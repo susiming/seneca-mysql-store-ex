@@ -3,6 +3,7 @@
 var Assert = require('assert')
 var _ = require('lodash')
 var MySQL = require('mysql')
+var PromiseMysql = require('node-mysql-promise');
 var Uuid = require('node-uuid')
 var DefaultConfig = require('./default_config.json')
 var QueryBuilder = require('./query-builder')
@@ -149,6 +150,16 @@ module.exports = function (options) {
       internals.connectionPool.query(query.text, query.values, done)
     }
   }
+
+  var ThinkMySQL = function (){
+    return PromiseMysql.createConnection({
+      database        : options.name,
+      host        : options.host,
+      user        : options.user,
+      password    : options.password
+    })
+  }
+  seneca.decorate('ThinkMySQL$', ThinkMySQL)
 
   // The store interface returned to seneca
   var store = {
@@ -365,6 +376,7 @@ module.exports = function (options) {
    */
   var meta = seneca.store.init(seneca, opts, store)
   internals.desc = meta.desc
+                    //= 'mysql-store'
   seneca.add({init: store.name, tag: meta.tag}, function (args, done) {
     configure(internals.opts, function (err) {
       if (err) {
@@ -471,6 +483,6 @@ module.exports = function (options) {
   seneca.add({role: actionRole, hook: 'generate_id', target: store.name}, function (args, done) {
     return done(null, {id: Uuid()})
   })
-
+  
   return {name: store.name, tag: meta.tag}
 }

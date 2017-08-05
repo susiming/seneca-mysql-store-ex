@@ -1,6 +1,6 @@
 {
   "name": "seneca-mysql-store-ex",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MySQL database layer for Seneca framework",
   "main": "mysql-store.js",
   "license": "MIT",
@@ -27,8 +27,7 @@
     "Seamus D'Arcy (https://github.com/darsee)",
     "Kamil Mech (https://github.com/kamil-mech)"
   ],
-  "scripts": {
-  },
+  "scripts": {},
   "bugs": {
     "url": "https://github.com/susiming/seneca-mysql-store-ex/issues"
   },
@@ -47,6 +46,7 @@
     "eraro": "0.4.1",
     "lodash": "4.15.0",
     "mysql": "2.11.1",
+    "node-mysql-promise": "0.0.6",
     "node-uuid": "1.4.7"
   },
   "files": [
@@ -75,5 +75,6 @@
   },
   "pre-commit": [
     "test"
-  ]
+  ],
+  "author": "susiming"
 }
