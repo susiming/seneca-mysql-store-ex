@@ -1,6 +1,6 @@
 {
   "name": "seneca-mysql-store-ex",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "MySQL database layer for Seneca framework",
   "main": "mysql-store.js",
   "license": "MIT",

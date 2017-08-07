@@ -10,6 +10,9 @@ seneca-mysql-store 扩展
     seneca-mysql-store 的扩展
     1.list查询增加了like操作
     2.增加了类似开源项目thinkjs中model操作
+    
+1.0.2
+    去除load和list返回都含有 entity$ 字段，泄露实体（表）名称
 
 1.0.1
 
@@ -31,7 +34,7 @@ seneca-mysql-store 扩展
         }
 
     详细使用说明见：https://github.com/ffttpp/node-mysql-promise
-    
+
 1.0.0
 
     list$查询操作增加:
