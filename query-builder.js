@@ -191,7 +191,7 @@ function updatestm (ent) {
 
     if (!_.isUndefined(entp[field])) {
       values.push(entp[field])
-      params.push(RelationalStore.escapeStr(RelationalStore.camelToSnakeCase(field)) + '=?')
+      params.push('`' + RelationalStore.escapeStr(RelationalStore.camelToSnakeCase(field)) + '`=?')
     }
   })
 
