@@ -217,7 +217,8 @@ module.exports = function (options) {
           }
 
           seneca.log(args.tag$, operation, args.ent)
-          return done(null, args.ent)
+          //return done(null, args.ent)
+          return done(null, res)
         })
       })
     },
@@ -353,7 +354,7 @@ module.exports = function (options) {
               cb(err, row)
             }
             else {
-              cb(err)
+              cb(err,result)
             }
           })
         })
