@@ -18,6 +18,7 @@ var actionRole = 'sql'
 
 module.exports = function (options) {
   var seneca = this
+  var _ThinkMySQL = {};
 
   var opts = seneca.util.deepextend(DefaultConfig, options)
   var internals = {
@@ -152,12 +153,24 @@ module.exports = function (options) {
   }
 
   var ThinkMySQL = function (){
-    return PromiseMysql.createConnection({
+    let thinkmysql_opt = {
       database        : options.name,
       host        : options.host,
       user        : options.user,
-      password    : options.password
-    })
+      password    : options.password,
+      connectionLimit : options.connectionLimit
+    }
+    let thinkmysql_key = JSON.stringify(thinkmysql_opt)
+    console.log('connectionLimit='+options.connectionLimit);
+
+    //let modelInstance = typeof _ThinkMySQL === "undefined" ? this.ThinkMySQL$() : _ThinkMySQL;
+    if(typeof _ThinkMySQL[thinkmysql_key] === "undefined"){
+        _ThinkMySQL[thinkmysql_key] = PromiseMysql.createConnection(thinkmysql_opt)
+      console.log('新_ThinkMySQL='+thinkmysql_key);
+    } else console.log('旧_ThinkMySQL='+thinkmysql_key);
+    //console.log(_ThinkMySQL);
+    return _ThinkMySQL[thinkmysql_key];
+
   }
   seneca.decorate('ThinkMySQL$', ThinkMySQL)
 

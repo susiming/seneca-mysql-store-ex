@@ -11,6 +11,9 @@ seneca-mysql-store 扩展
     1.list查询增加了like操作
     2.增加了类似开源项目thinkjs中model操作
     
+1.0.4
+    BUG:too many connections
+    
 1.0.2
     去除load和list返回都含有 entity$ 字段，泄露实体（表）名称
 
