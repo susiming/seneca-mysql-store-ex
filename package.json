@@ -1,6 +1,6 @@
 {
   "name": "seneca-mysql-store-ex",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "MySQL database layer for Seneca framework",
   "main": "mysql-store.js",
   "license": "MIT",
@@ -45,7 +45,7 @@
     "async": "2.0.1",
     "eraro": "0.4.1",
     "lodash": "4.15.0",
-    "mysql": "2.11.1",
+    "mysql": "2.16.0",
     "node-mysql-promise": "0.0.6",
     "node-uuid": "1.4.7"
   },

@@ -161,21 +161,22 @@ module.exports = function (options) {
       connectionLimit : options.connectionLimit
     }
     let thinkmysql_key = JSON.stringify(thinkmysql_opt)
-    console.log('connectionLimit='+options.connectionLimit);
 
     if(newConnection){
+      console.log('\x1B[90m%s\x1B[39m','新1_ThinkMySQL='+thinkmysql_key);
         return PromiseMysql.createConnection(thinkmysql_opt)
     } else {
         //let modelInstance = typeof _ThinkMySQL === "undefined" ? this.ThinkMySQL$() : _ThinkMySQL;
         if(typeof _ThinkMySQL[thinkmysql_key] === "undefined"){
-            _ThinkMySQL[thinkmysql_key] = PromiseMysql.createConnection(thinkmysql_opt)
-          console.log('新_ThinkMySQL='+thinkmysql_key);
-        } else console.log('旧_ThinkMySQL='+thinkmysql_key);
-        //console.log(_ThinkMySQL);
+          _ThinkMySQL[thinkmysql_key] = PromiseMysql.createConnection(thinkmysql_opt);
+          console.log('\x1B[90m%s\x1B[39m','新_ThinkMySQL='+thinkmysql_key);
+        } else {
+          console.log('\x1B[90m%s\x1B[39m','旧_ThinkMySQL='+thinkmysql_key);
+        }
+
+
         return _ThinkMySQL[thinkmysql_key];
     }
-
-
   }
   seneca.decorate('ThinkMySQL$', ThinkMySQL)
 
@@ -399,7 +400,7 @@ module.exports = function (options) {
   seneca.add({init: store.name, tag: meta.tag}, function (args, done) {
     configure(internals.opts, function (err) {
       if (err) {
-        console.log('err: ', err)
+        console.log('\x1B[31m%s\x1B[39m', '错误: ', err)
         throw Eraro('entity/configure', 'store: ' + store.name, 'error: ' + err, 'desc: ' + internals.desc)
       }
       else done()
