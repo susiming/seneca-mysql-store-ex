@@ -11,6 +11,9 @@ seneca-mysql-store 扩展
     1.list查询增加了like操作
     2.增加了类似开源项目thinkjs中model操作
     
+1.0.7
+    update mysql pkg version
+    
 1.0.4
     BUG:too many connections
     
